@@ -2,6 +2,11 @@ var express = require("express");
 var logger = require("morgan");
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
+var config = require("./config");
+
+mongoose.connect(config.DB_URL);
+mongoose.Promise = global.Promise;
+mongoose.connection.on("error", console.error.bind(console, "mongodb connection err:"));
 var app = express();
 
 app.use(logger("tiny"));
