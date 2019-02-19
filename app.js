@@ -21,7 +21,6 @@ app.use((req, res, next) => {
         "description": "404 not found",
         "status": 404
     };
-
     next(err);
 });
 
