@@ -33,7 +33,7 @@ const CourseSchema = new Schema({
         type: String,
         required: true
     },
-    costs: Schema.Types.Decimal128
+    costs: Number
 });
 
 const university = mongoose.model("University", UniversitySchema);
