@@ -2,11 +2,13 @@ const models = require("./models");
 const Survey = models.Survey;
 
 function ListSurveyController(req, res, next) {
-    const o = Survey.find({}, (err, survey) => {
-        console.log(err)
-        res.json(survey);
+    Survey.find({}, "no content color", (err, data) => {
+        if (err) {
+            res.status(400).json({err});
+            return;
+        }
+        res.status(200).json(data);
     });
-    res.json(o);
 }
 
 module.exports = {

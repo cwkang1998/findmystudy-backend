@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const config = require("./config");
 const surveyRoutes = require("./survey/routes");
 const searchRoutes = require("./search/routes");
+const studentRoutes = require("./student/routes");
 
 mongoose.connect(config.DB_URL, { useNewUrlParser: true });
 mongoose.Promise = global.Promise;
@@ -19,6 +20,7 @@ app.use(bodyParser.json());
 
 app.use("/survey", surveyRoutes);
 app.use("/search", searchRoutes);
+app.use("/student", studentRoutes);
 
 // Handles no matching url
 app.use((req, res, next) => {
