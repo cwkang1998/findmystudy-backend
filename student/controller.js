@@ -6,7 +6,8 @@ function ListStudentController(req, res, next) {
 }
 
 function RetrieveStudentController(req, res, next) {
-    res.json({"student": "student"});
+    const u = Student.findById(id, function (err, student) {});
+    res.json(u);
 }
 
 module.exports = {

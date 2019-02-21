@@ -25,7 +25,7 @@ const StudentSchema = new Schema({
         required: false
     },
     grades: {
-        type: String,
+        type: Object,
         required: false
     },
     created_time: {

@@ -1,14 +1,14 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const QuestionsSchema = new Schema({
+const SurveySchema = new Schema({
     no: Number,
     content: String,
     color: String
 });
 
-const questions = mongoose.model("Questions", QuestionsSchema);
+const survey = mongoose.model("Survey", SurveySchema);
 
 module.exports = {
-    Question: questions
+    Survey: survey
 };
