@@ -9,6 +9,4 @@ const SurveySchema = new Schema({
 
 const survey = mongoose.model("Survey", SurveySchema);
 
-module.exports = {
-    Survey: survey
-};
+module.exports = {Survey: survey};

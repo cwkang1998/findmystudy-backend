@@ -25,7 +25,7 @@ app.use("/student", studentRoutes);
 // Handles no matching url
 app.use((req, res, next) => {
     const err = {
-        description: "404 not found",
+        description: "404 not found.",
         status: 404
     };
     next(err);
