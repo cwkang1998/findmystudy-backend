@@ -2,7 +2,10 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const SurveySchema = new Schema({
-    no: Number,
+    no: {
+        type: Number,
+        unique: true
+    },
     content: String,
     color: String
 });

@@ -61,7 +61,7 @@
     "id-blacklist": "error",
     "id-match": "error",
     "implicit-arrow-linebreak": ["error", "beside"],
-    "indent": "error",
+    "indent": ["error", 2],
     "indent-legacy": "error",
     "init-declarations": "error",
     "jsx-quotes": "error",

@@ -6,8 +6,9 @@ const config = require("./config");
 const surveyRoutes = require("./survey/routes");
 const searchRoutes = require("./search/routes");
 const studentRoutes = require("./student/routes");
+const adminRoutes = require("./admin/routes");
 
-mongoose.connect(config.DB_URL, { useNewUrlParser: true });
+mongoose.connect(config.DB_URL, {useNewUrlParser: true});
 mongoose.Promise = global.Promise;
 mongoose.connection.on(
     "error",
@@ -21,20 +22,19 @@ app.use(bodyParser.json());
 app.use("/survey", surveyRoutes);
 app.use("/search", searchRoutes);
 app.use("/student", studentRoutes);
+app.use("/admin", adminRoutes);
 
 // Handles no matching url
 app.use((req, res, next) => {
-    const err = {
-        description: "404 not found.",
-        status: 404
-    };
+    const err = new Error("404 not found.");
+    err.status = 404;
     next(err);
 });
 
 // Handles error for server
 app.use((err, req, res, next) => {
     res.status(err.status || 500);
-    res.json({ error: err.description });
+    res.json({error: err.message});
 });
 
 module.exports = app;

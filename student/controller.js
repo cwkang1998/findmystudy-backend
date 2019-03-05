@@ -11,8 +11,7 @@ async function CreateStudentController(req, res, next) {
       highest_education: body.highest_education,
       previous_institute: body.previous_institute,
       grades: body.grades,
-      color: body.color,
-      created_time: body.created_time
+      color: body.color
     });
     res.status(201).json(data);
   } catch (err) {
