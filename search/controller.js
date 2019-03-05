@@ -3,6 +3,14 @@ const models = require("./models");
 const University = models.University;
 const Course = models.Course;
 
+/**
+ * Lists all the university available.
+ * Accepts query parameter 'q' on the university's name or country
+ * TODO: Pagination should be enabled by default
+ * @param {Function} req
+ * @param {Function} res
+ * @param {Function} next
+ */
 async function ListUnisController(req, res, next) {
   let queryCond = {};
   const queryKeyword = req.query.q;
@@ -46,6 +54,16 @@ async function RetreiveUniController(req, res, next) {
   }
 }
 
+/**
+ * Lists all the courses available.
+ * Accepts query parameter 'q' on the courses's name or
+ * university name to search for courses on that uni,
+ * Also accepts 'costs' as parameter for filtering by course pricing
+ * TODO: Pagination should be enabled by default
+ * @param {Function} req
+ * @param {Function} res
+ * @param {Function} next
+ */
 async function ListCourseController(req, res, next) {
   let queryCond = {};
   const queryKeyword = req.query.q;
@@ -67,7 +85,9 @@ async function ListCourseController(req, res, next) {
       uniIDs = [];
     }
 
-    //Building query based on query params
+    // Building db query based on query params, 'q' and 'cost'.
+    // Enables keyword based search for course with uni names or course names
+    // and also costs based search for students with financial constraints
     if (queryKeyword && queryCost) {
       queryCond = {
         $and: [

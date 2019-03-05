@@ -49,6 +49,14 @@ async function LoginController(req, res, next) {
   }
 }
 
+/**
+ * Creates a new admin account.
+ * Only existing admin accounts can create new admin accounts.
+ * returns created admin account details.
+ * @param {Function} req 
+ * @param {Function} res 
+ * @param {Function} next 
+ */
 async function SignUpController(req, res, next) {
   const body = req.body;
   if (!body.username) {

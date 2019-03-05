@@ -1,6 +1,15 @@
 const models = require("./models");
 const Student = models.Student;
 
+/**
+ * Creates a student record in the server.
+ * Students completed the quiz will have records(color) saved on server.
+ * Students that did not complete quiz but went on to book will also have
+ * some records and details saved.
+ * @param {Function} req
+ * @param {Function} res
+ * @param {Function} next
+ */
 async function CreateStudentController(req, res, next) {
   const body = req.body;
   try {
@@ -20,6 +29,13 @@ async function CreateStudentController(req, res, next) {
   }
 }
 
+/**
+ * Lists all students records gathered from the application.
+ * Accessible by Admin only.
+ * @param {Function} req
+ * @param {Function} res
+ * @param {Function} next
+ */
 async function ListStudentController(req, res, next) {
   let query = Student.find(
     {},
@@ -34,6 +50,13 @@ async function ListStudentController(req, res, next) {
   }
 }
 
+/**
+ * Retrieve a single student record gathered from the application.
+ * Accessible by Admin only.
+ * @param {Function} req
+ * @param {Function} res
+ * @param {Function} next
+ */
 async function RetrieveStudentController(req, res, next) {
   let query = Student.findById(
     { _id: req.params.id },
