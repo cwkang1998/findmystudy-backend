@@ -1,9 +1,9 @@
 const express = require("express");
 const route = express.Router();
 const controller = require("./controller");
-const JWTAdminAuthMiddleware = require("./auth");
+const auth = require("./auth");
 
 route.post("/login", controller.LoginController);
-route.post("/signup", JWTAdminAuthMiddleware, controller.SignUpController);
+route.post("/signup", auth, controller.SignUpController);
 
 module.exports = route;

@@ -2,6 +2,12 @@ const ObjectId = require("mongoose").Types.ObjectId;
 const models = require("./models");
 const Booking = models.Booking;
 
+/**
+ * List all bookings made by students
+ * @param {Function} req
+ * @param {Function} res
+ * @param {Function} next
+ */
 async function ListBookingController(req, res, next) {
   let query = Booking.find(
     {},
