@@ -44,7 +44,7 @@ async function LoginController(req, res, next) {
       token_created_time: token_created_time
     });
   } catch (err) {
-    res.status(401).json({ err });
+    res.status(401).json({ err: err.message });
     return;
   }
 }
@@ -85,7 +85,7 @@ async function SignUpController(req, res, next) {
       res.status(400).json({ err: "username already taken." });
       return;
     }
-    res.status(400).json({ err });
+    res.status(400).json({ err: err.message });
     return;
   }
 }

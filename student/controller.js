@@ -22,9 +22,18 @@ async function CreateStudentController(req, res, next) {
       grades: body.grades,
       color: body.color
     });
-    res.status(201).json(data);
+    res.status(201).json({
+      _id: data._id,
+      name: data.name,
+      dob: data.dob,
+      gender: data.gender,
+      highest_education: data.highest_education,
+      previous_institute: data.previous_institute,
+      grades: data.grades,
+      color: data.color
+    });
   } catch (err) {
-    res.status(400).json({ err });
+    res.status(400).json({ err:err.message });
     return;
   }
 }
@@ -45,7 +54,7 @@ async function ListStudentController(req, res, next) {
     let data = await query.exec();
     res.status(200).json(data);
   } catch (err) {
-    res.status(400).json({ err });
+    res.status(400).json({ err: err.message });
     return;
   }
 }
@@ -70,7 +79,7 @@ async function RetrieveStudentController(req, res, next) {
     }
     res.status(200).json(data);
   } catch (err) {
-    res.status(400).json({ err });
+    res.status(400).json({ err:err.message });
     return;
   }
 }

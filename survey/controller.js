@@ -7,7 +7,7 @@ async function ListSurveyController(req, res, next) {
     let data = await query.exec();
     res.status(200).json(data);
   } catch (err) {
-    res.status(400).json({ err });
+    res.status(400).json({ err:err.message });
     return;
   }
 }

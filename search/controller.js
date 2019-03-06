@@ -30,14 +30,14 @@ async function ListUnisController(req, res, next) {
     let data = await query.exec();
     res.status(200).json(data);
   } catch (err) {
-    res.status(400).json({ err });
+    res.status(400).json({ err: err.message });
     return;
   }
 }
 
 async function RetreiveUniController(req, res, next) {
   let query = University.findById(
-    { _id: req.params.id },
+    req.params.id,
     "_id name description address country"
   );
 
@@ -49,7 +49,7 @@ async function RetreiveUniController(req, res, next) {
     }
     res.status(200).json(data);
   } catch (err) {
-    res.status(400).json({ err });
+    res.status(400).json({ err: err.message });
     return;
   }
 }
@@ -127,7 +127,7 @@ async function ListCourseController(req, res, next) {
     let courseQueryResult = await courseQuery.exec();
     res.status(200).json(courseQueryResult);
   } catch (err) {
-    res.status(400).json({ err });
+    res.status(400).json({ err:err.message });
     return;
   }
 }
@@ -145,7 +145,7 @@ async function RetrieveCourseController(req, res, next) {
     }
     res.status(200).json(data);
   } catch (err) {
-    res.status(400).json({ err });
+    res.status(400).json({ err:err.message });
     return;
   }
 }

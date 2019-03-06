@@ -7,6 +7,7 @@ const surveyRoutes = require("./survey/routes");
 const searchRoutes = require("./search/routes");
 const studentRoutes = require("./student/routes");
 const adminRoutes = require("./admin/routes");
+const bookingRoutes = require("./booking/routes");
 
 // Setup global connection to mongodb
 mongoose.connect(config.DB_URL, {useNewUrlParser: true});
@@ -28,6 +29,7 @@ app.use("/survey", surveyRoutes);
 app.use("/search", searchRoutes);
 app.use("/student", studentRoutes);
 app.use("/admin", adminRoutes);
+app.use("/booking", bookingRoutes);
 
 // Handles no matching url
 app.use((req, res, next) => {

@@ -14,7 +14,7 @@ const StudentSchema = new Schema({
         type: String,
         required: true
     },
-    color: String,
+    color: String, //TODO:Use Enum
     highest_education: {
         type: String,
         required: false

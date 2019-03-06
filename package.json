@@ -17,6 +17,8 @@
     "jsonwebtoken": "^8.5.0",
     "mocha": "^5.2.0",
     "mongoose": "^5.4.14",
+    "mongoose-intl-phone-number": "^1.1.1",
+    "mongoose-type-email": "^1.0.10",
     "morgan": "^1.9.1"
   }
 }
