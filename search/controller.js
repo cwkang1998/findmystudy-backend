@@ -4,6 +4,35 @@ const University = models.University;
 const Course = models.Course;
 
 /**
+ * Creates a list of university record in the server.
+ * Admin can enter details of universities into the record in the server.
+ * @param {Function} req
+ * @param {Function} res
+ * @param {Function} next
+ */
+async function CreateUnisController(req, res, next) {
+  const body = req.body;
+  try {
+    let data = await University.create({
+      name: body.name,
+      description: body.description,
+      address: body.address,
+      country: body.country
+    });
+    res.status(201).json({
+      _id: data._id,
+      name: data.name,
+      description: data.description,
+      address: data.address,
+      country: data.country
+    });
+  } catch (err) {
+    res.status(400).json({ err:err.message });
+    return;
+  }
+}
+
+/**
  * Lists all the university available.
  * Accepts query parameter 'q' on the university's name or country
  * TODO: Pagination should be enabled by default
@@ -50,6 +79,35 @@ async function RetreiveUniController(req, res, next) {
     res.status(200).json(data);
   } catch (err) {
     res.status(400).json({ err: err.message });
+    return;
+  }
+}
+
+/**
+ * Creates a list of courses available in a university and record in the server.
+ * Admin can enter the details of courses into the record in the server.
+ * @param {Function} req
+ * @param {Function} res
+ * @param {Function} next
+ */
+async function CreateCourseController(req, res, next) {
+  const body = req.body;
+  try {
+    let data = await Course.create({
+      name: body.name,
+      university: body.university,
+      description: body.description,
+      costs: body.costs
+    });
+    res.status(201).json({
+      _id: data._id,
+      name: data.name,
+      university: data.university,
+      description: data.description,
+      costs: data.costs
+    });
+  } catch (err) {
+    res.status(400).json({ err:err.message });
     return;
   }
 }
@@ -151,8 +209,10 @@ async function RetrieveCourseController(req, res, next) {
 }
 
 module.exports = {
+  CreateUnisController,
   ListUnisController,
   RetreiveUniController,
+  CreateCourseController,
   ListCourseController,
   RetrieveCourseController
 };

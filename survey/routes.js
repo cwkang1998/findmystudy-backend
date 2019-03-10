@@ -6,8 +6,8 @@ const Survey = models.Survey;
 
 route.get("/", controller.ListSurveyController);
 
-// TODO: Extra feature for creating survey questions in admin panel
-// Route.post("/", controller.CreateSurveyController);
-// Route.put("/", controller.UpdateSurveyController);
+// Extra feature for creating survey questions in admin panel
+route.post("/", controller.CreateSurveyController);
+route.put("/", controller.UpdateSurveyController);
 
 module.exports = route;
