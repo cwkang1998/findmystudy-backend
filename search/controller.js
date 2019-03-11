@@ -35,7 +35,6 @@ async function CreateUnisController(req, res, next) {
 /**
  * Lists all the university available.
  * Accepts query parameter 'q' on the university's name or country
- * TODO: Pagination should be enabled by default
  * @param {Function} req
  * @param {Function} res
  * @param {Function} next
@@ -108,6 +107,17 @@ async function RetreiveUniController(req, res, next) {
     res.status(200).json(data);
   } catch (err) {
     res.status(400).json({ err: err.message });
+    return;
+  }
+}
+
+async function DeleteUnisController(req, res, next) {
+  let deleteDetails = { _id: req.params.id };
+  try {
+    let data = await University.deleteOne(deleteDetails);
+    res.status(200).json();
+  } catch (err) {
+    res.status(500).json({ err:err.message });
     return;
   }
 }
@@ -266,13 +276,26 @@ async function RetrieveCourseController(req, res, next) {
   }
 }
 
+async function DeleteCourseController(req, res, next) {
+  let deleteDetails = { _id: req.params.id };
+  try {
+    let data = await Course.deleteOne(deleteDetails);
+    res.status(200).json();
+  } catch (err) {
+    res.status(500).json({ err:err.message });
+    return;
+  }
+}
+
 module.exports = {
   CreateUnisController,
   ListUnisController,
   UpdateUnisController,
   RetreiveUniController,
+  DeleteUnisController,
   CreateCourseController,
   ListCourseController,
   UpdateCourseController,
-  RetrieveCourseController
+  RetrieveCourseController,
+  DeleteCourseController
 };
