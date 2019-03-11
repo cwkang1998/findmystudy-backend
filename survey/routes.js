@@ -8,6 +8,6 @@ route.get("/", controller.ListSurveyController);
 
 // Extra feature for creating survey questions in admin panel
 route.post("/", controller.CreateSurveyController);
-route.put("/", controller.UpdateSurveyController);
+route.put("/:id", controller.UpdateSurveyController);
 
 module.exports = route;
