@@ -64,6 +64,35 @@ async function ListUnisController(req, res, next) {
   }
 }
 
+async function UpdateUnisController(req, res, next) {
+  const body = req.body;
+  let updateDetails = { _id: req.params.id };
+  if (body.name) {
+    updateDetails.name = body.name;
+  }
+  if (body.description) {
+    updateDetails.description = body.description;
+  }
+  if (body.address) {
+    updateDetails.address = body.address;
+  }
+  if (body.country) {
+    updateDetails.country = body.country;
+  }
+  if (!body.name && !body.description && !body.address && !body.country) {
+    res.status(400).json({ err: "no update perimeter given" });
+    return;
+  }
+
+  try {
+    let data = await University.updateOne(updateDetails);
+    res.status(200).json();
+  } catch (err) {
+    res.status(400).json({ err: err.message });
+    return;
+  }
+}
+
 async function RetreiveUniController(req, res, next) {
   let query = University.findById(
     req.params.id,
@@ -190,6 +219,35 @@ async function ListCourseController(req, res, next) {
   }
 }
 
+async function UpdateCourseController(req, res, next) {
+  const body = req.body;
+  let updateDetails = { _id: req.params.id };
+  if (body.name) {
+    updateDetails.name = body.name;
+  }
+  if (body.university) {
+    updateDetails.university = body.university;
+  }
+  if (body.description) {
+    updateDetails.description = body.description;
+  }
+  if (body.costs) {
+    updateDetails.costs = body.costs;
+  }
+  if (!body.name && !body.university && !body.description && !body.costs) {
+    res.status(400).json({ err: "no update perimeter given" });
+    return;
+  }
+
+  try {
+    let data = await Course.updateOne(updateDetails);
+    res.status(200).json();
+  } catch (err) {
+    res.status(400).json({ err: err.message });
+    return;
+  }
+}
+
 async function RetrieveCourseController(req, res, next) {
   let query = Course.findById(
     { _id: req.params.id },
@@ -211,8 +269,10 @@ async function RetrieveCourseController(req, res, next) {
 module.exports = {
   CreateUnisController,
   ListUnisController,
+  UpdateUnisController,
   RetreiveUniController,
   CreateCourseController,
   ListCourseController,
+  UpdateCourseController,
   RetrieveCourseController
 };
