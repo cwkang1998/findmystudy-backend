@@ -1,6 +1,7 @@
 const express = require("express");
 const logger = require("morgan");
 const bodyParser = require("body-parser");
+const cors = require('cors')
 const mongoose = require("mongoose");
 const config = require("./config");
 const surveyRoutes = require("./survey/routes");
@@ -21,6 +22,7 @@ mongoose.connection.on(
 const app = express();
 
 // Middleware setup
+app.use(cors())
 app.use(logger("tiny"));
 app.use(bodyParser.json());
 
