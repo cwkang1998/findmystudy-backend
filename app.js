@@ -1,7 +1,7 @@
 const express = require("express");
 const logger = require("morgan");
 const bodyParser = require("body-parser");
-const cors = require('cors')
+const cors = require("cors");
 const mongoose = require("mongoose");
 const config = require("./config");
 const surveyRoutes = require("./survey/routes");
@@ -14,15 +14,15 @@ const bookingRoutes = require("./booking/routes");
 mongoose.connect(config.DB_URL, {useNewUrlParser: true});
 mongoose.Promise = global.Promise;
 mongoose.connection.on(
-  "error",
-  console.error.bind(console, "mongodb connection err:")
+    "error",
+    console.error.bind(console, "mongodb connection err:")
 );
 
 // Setup application instances
 const app = express();
 
 // Middleware setup
-app.use(cors())
+app.use(cors());
 app.use(logger("tiny"));
 app.use(bodyParser.json());
 
@@ -35,15 +35,15 @@ app.use("/booking", bookingRoutes);
 
 // Handles no matching url
 app.use((req, res, next) => {
-  const err = new Error("404 not found.");
-  err.status = 404;
-  next(err);
+    const err = new Error("404 not found.");
+    err.status = 404;
+    next(err);
 });
 
 // Handles error for server
 app.use((err, req, res, next) => {
-  res.status(err.status || 500);
-  res.json({error: err.message});
+    res.status(err.status || 500);
+    res.json({error: err.message});
 });
 
 module.exports = app;

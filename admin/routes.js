@@ -4,7 +4,6 @@ const controller = require("./controller");
 const auth = require("./auth");
 
 route.post("/login", controller.LoginController);
-// route.post("/signup", auth, controller.SignUpController);
 route.post("/signup", controller.SignUpController);
 
 module.exports = route;
