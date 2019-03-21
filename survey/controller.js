@@ -61,5 +61,5 @@ async function UpdateSurveyController(req, res, next) {
 module.exports = { 
   CreateSurveyController,
   ListSurveyController,
-  UpdateSurveyController 
+  UpdateSurveyController
 };
