@@ -91,7 +91,9 @@ async function UpdateStudentController(req, res, next) {
     let body = req.body;
     body._id = req.params.id;
     try {
-        await Student.updateOne(body);
+        await Student.updateOne({ _id: req.params.id }, body, {
+            runValidators: true
+        });
         res.status(200).json();
     } catch (err) {
         res.status(400).json({ err: err.message });
