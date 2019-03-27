@@ -7,6 +7,7 @@ const auth = require("../admin/auth");
 
 route.get("/", auth, controller.ListStudentController);
 route.post("/", controller.CreateStudentController);
+route.put("/:id", controller.UpdateStudentController);
 route.get("/:id", auth, controller.RetrieveStudentController);
 
 module.exports = route;

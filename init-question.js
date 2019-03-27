@@ -94,7 +94,7 @@ Survey.insertMany(
         {
             no: 17,
             content: "I am comfortable in respecting higher authority.",
-            color: "blue"
+            color: "gold"
         },
         {
             no: 18,

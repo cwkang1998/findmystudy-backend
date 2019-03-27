@@ -4,7 +4,7 @@
  */
 
 module.exports = {
-    "PORT": 3000,
+    "PORT": 5000,
     "HOST": "0.0.0.0",
     "DB_URL": `mongodb://mylogin:${encodeURIComponent("mypass")}@localhost:27017/mydatabasename`,
     "SECRET_KEY": "This is an example secret key.",
