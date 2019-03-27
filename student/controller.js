@@ -91,7 +91,7 @@ async function UpdateStudentController(req, res, next) {
     let body = req.body;
     body._id = req.params.id;
     try {
-        let data = await University.updateOne(body);
+        await Student.updateOne(body);
         res.status(200).json();
     } catch (err) {
         res.status(400).json({ err: err.message });
