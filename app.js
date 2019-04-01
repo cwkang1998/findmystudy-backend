@@ -1,3 +1,4 @@
+const path = require("path");
 const express = require("express");
 const logger = require("morgan");
 const bodyParser = require("body-parser");
@@ -32,6 +33,8 @@ app.use("/search", searchRoutes);
 app.use("/student", studentRoutes);
 app.use("/admin", adminRoutes);
 app.use("/booking", bookingRoutes);
+
+app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
 // Handles no matching url
 app.use((req, res, next) => {
