@@ -17,6 +17,11 @@ const UniversitySchema = new Schema({
     country: {
         type: String,
         required: true
+    },
+    icon: {
+        type: String,
+        required: true,
+        default: "/uploads/placeholder.png"
     }
 });
 

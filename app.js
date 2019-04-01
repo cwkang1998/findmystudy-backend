@@ -6,7 +6,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const config = require("./config");
 const surveyRoutes = require("./survey/routes");
-const searchRoutes = require("./search/routes");
+const uniRoutes = require("./uni/routes");
 const studentRoutes = require("./student/routes");
 const adminRoutes = require("./admin/routes");
 const bookingRoutes = require("./booking/routes");
@@ -29,7 +29,7 @@ app.use(bodyParser.json());
 
 // Routes setup
 app.use("/survey", surveyRoutes);
-app.use("/search", searchRoutes);
+app.use("/uni", uniRoutes);
 app.use("/student", studentRoutes);
 app.use("/admin", adminRoutes);
 app.use("/booking", bookingRoutes);
