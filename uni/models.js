@@ -14,10 +14,7 @@ const UniversitySchema = new Schema({
         type: String,
         required: true
     },
-    country: {
-        type: String,
-        required: true
-    },
+    courses: {type: Array},
     icon: {
         type: String,
         required: true,

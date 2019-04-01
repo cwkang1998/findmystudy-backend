@@ -17,14 +17,17 @@ async function CreateUnisController(req, res, next) {
             name: body.name,
             description: body.description,
             address: body.address,
-            country: body.country
+            courses: JSON.parse(body.courses),
+            icon: new URL(req.file.path, `${req.protocol}://${req.get("host")}`)
+                .href
         });
         res.status(201).json({
             _id: data._id,
             name: data.name,
             description: data.description,
             address: data.address,
-            country: data.country
+            courses: data.courses,
+            icon: data.icon
         });
     } catch (err) {
         res.status(400).json({ err: err.message });
@@ -52,7 +55,7 @@ async function ListUnisController(req, res, next) {
     }
     let query = University.find(
         queryCond,
-        "_id name description address country"
+        "_id name description address courses icon"
     );
     try {
         let data = await query.exec();
@@ -75,20 +78,30 @@ async function UpdateUnisController(req, res, next) {
     if (body.address) {
         updateDetails.address = body.address;
     }
-    if (body.country) {
-        updateDetails.country = body.country;
+    if (body.courses) {
+        updateDetails.courses = JSON.parse(body.courses);
     }
-    if (!body.name && !body.description && !body.address && !body.country) {
+    if (req.file) {
+        updateDetails.icon = new URL(
+            req.file.path,
+            `${req.protocol}://${req.get("host")}`
+        ).href;
+    }
+    if (
+        !body.name &&
+        !body.description &&
+        !body.address &&
+        !body.courses &&
+        !req.file
+    ) {
         res.status(400).json({ err: "no update perimeter given" });
         return;
     }
 
     try {
-        let data = await University.updateOne(
-            { _id: req.params.id },
-            updateDetails,
-            { runValidators: true }
-        );
+        await University.updateOne({ _id: req.params.id }, updateDetails, {
+            runValidators: true
+        });
         res.status(200).json();
     } catch (err) {
         res.status(400).json({ err: err.message });
@@ -99,7 +112,7 @@ async function UpdateUnisController(req, res, next) {
 async function RetreiveUniController(req, res, next) {
     let query = University.findById(
         req.params.id,
-        "_id name description address country"
+        "_id name description address courses icon"
     );
 
     try {
