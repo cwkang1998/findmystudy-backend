@@ -18,7 +18,7 @@ async function CreateUnisController(req, res, next) {
             description: body.description,
             address: body.address,
             courses: JSON.parse(body.courses),
-            icon: new URL(req.file.path, `${req.protocol}://${req.get("host")}`)
+            icon: new URL(req.file.path, `${req.protocol}://${req.headers.host}`)
                 .href
         });
         res.status(201).json({
