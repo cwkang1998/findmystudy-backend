@@ -5,11 +5,7 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const config = require("./config");
-const surveyRoutes = require("./survey/routes");
-const uniRoutes = require("./uni/routes");
-const studentRoutes = require("./student/routes");
-const adminRoutes = require("./admin/routes");
-const bookingRoutes = require("./booking/routes");
+const apiRoutes = require("./routes");
 
 // Setup global connection to mongodb
 mongoose.connect(config.DB_URL, {useNewUrlParser: true});
@@ -27,26 +23,16 @@ app.use(cors());
 app.use(logger("tiny"));
 app.use(bodyParser.json());
 
-// Routes setup
-app.use("/survey", surveyRoutes);
-app.use("/uni", uniRoutes);
-app.use("/student", studentRoutes);
-app.use("/admin", adminRoutes);
-app.use("/booking", bookingRoutes);
+// API Endpoints
+app.use("/api", apiRoutes);
 
+// Media host
 app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
-// Handles no matching url
-app.use((req, res, next) => {
-    const err = new Error("404 not found.");
-    err.status = 404;
-    next(err);
-});
-
-// Handles error for server
-app.use((err, req, res, next) => {
-    res.status(err.status || 500);
-    res.json({error: err.message});
+// React app
+app.use("/", express.static(path.join(__dirname, "build/")));
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "build/index.html"));
 });
 
 module.exports = app;
