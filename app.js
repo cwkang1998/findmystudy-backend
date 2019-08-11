@@ -29,10 +29,10 @@ app.use("/api", apiRoutes);
 // Media host
 app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
-// React app
-app.use("/", express.static(path.join(__dirname, "build/")));
-app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "build/index.html"));
-});
+// React app (Currently removed)
+// app.use("/", express.static(path.join(__dirname, "build/")));
+// app.get("*", (req, res) => {
+//     res.sendFile(path.join(__dirname, "build/index.html"));
+// });
 
 module.exports = app;
