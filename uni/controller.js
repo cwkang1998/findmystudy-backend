@@ -59,6 +59,22 @@ async function ListUnisController(req, res, next) {
     );
     try {
         let data = await query.exec();
+        // The next line rearranges the order of the data,
+        // with the downside of needing to specify all keys
+        data = JSON.parse(
+            JSON.stringify(
+                data,
+                [
+                    "_id",
+                    "name",
+                    "description",
+                    "address",
+                    "courses",
+                    "icon"
+                ],
+                4
+            )
+        );
         res.status(200).json(data);
     } catch (err) {
         res.status(400).json({ err: err.message });
